@@ -32,10 +32,10 @@ router.get('/players', async (req, res) => {
       message: `Found ${sources.length} video sources for episode`
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     console.error('Error fetching episode players:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to fetch episode players',
       message: error instanceof Error ? error.message : 'Unknown error'

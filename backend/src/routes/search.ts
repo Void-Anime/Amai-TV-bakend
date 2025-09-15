@@ -73,10 +73,10 @@ router.get('/', async (req, res) => {
       message: `Found ${filteredResults.length} results for "${query}"`
     };
     
-    res.json(response_data);
+    return res.json(response_data);
   } catch (error) {
     console.error('Error searching:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Search failed',
       message: error instanceof Error ? error.message : 'Unknown error'
@@ -124,10 +124,10 @@ router.get('/suggestions', async (req, res) => {
       message: `Found ${suggestions.length} suggestions`
     };
     
-    res.json(response_data);
+    return res.json(response_data);
   } catch (error) {
     console.error('Error getting suggestions:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to get suggestions',
       message: error instanceof Error ? error.message : 'Unknown error'

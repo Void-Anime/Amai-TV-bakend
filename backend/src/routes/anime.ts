@@ -23,10 +23,10 @@ router.get('/list', async (req, res) => {
       message: `Fetched ${data.items.length} anime items for page ${page}`
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     console.error('Error fetching anime list:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to fetch anime list',
       message: error instanceof Error ? error.message : 'Unknown error'
@@ -58,13 +58,13 @@ router.get('/details', async (req, res) => {
     const response: ApiResponse = {
       success: true,
       data,
-      message: `Fetched details for ${data.title || 'anime'}`
+      message: 'Fetched anime details'
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     console.error('Error fetching anime details:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to fetch anime details',
       message: error instanceof Error ? error.message : 'Unknown error'
@@ -86,10 +86,10 @@ router.get('/movies', async (req, res) => {
       message: `Fetched ${data.items.length} movies for page ${page}`
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     console.error('Error fetching movies:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to fetch movies',
       message: error instanceof Error ? error.message : 'Unknown error'
@@ -111,10 +111,10 @@ router.get('/cartoons', async (req, res) => {
       message: `Fetched ${data.items.length} cartoons for page ${page}`
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     console.error('Error fetching cartoons:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to fetch cartoons',
       message: error instanceof Error ? error.message : 'Unknown error'
@@ -136,10 +136,10 @@ router.get('/ongoing', async (req, res) => {
       message: `Fetched ${data.items.length} ongoing series for page ${page}`
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     console.error('Error fetching ongoing series:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to fetch ongoing series',
       message: error instanceof Error ? error.message : 'Unknown error'
@@ -158,10 +158,10 @@ router.get('/upcoming', async (req, res) => {
       message: `Fetched ${data.episodes.length} upcoming episodes`
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     console.error('Error fetching upcoming episodes:', error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to fetch upcoming episodes',
       message: error instanceof Error ? error.message : 'Unknown error'

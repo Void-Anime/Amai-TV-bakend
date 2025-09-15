@@ -48,13 +48,13 @@ router.get('/proxy', async (req, res) => {
     });
     
     // Pipe image data to response
-    response.data.pipe(res);
+    return response.data.pipe(res);
     
   } catch (error) {
     console.error('Error proxying image:', error);
     
     // Return a placeholder image or error response
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to proxy image',
       message: error instanceof Error ? error.message : 'Unknown error'
@@ -111,7 +111,7 @@ router.get('/info', async (req, res) => {
       message: 'Image information retrieved successfully'
     };
     
-    res.json(response_data);
+    return res.json(response_data);
     
   } catch (error) {
     console.error('Error getting image info:', error);
@@ -121,12 +121,12 @@ router.get('/info', async (req, res) => {
       error: 'Failed to get image information',
       message: error instanceof Error ? error.message : 'Unknown error',
       data: {
-        url: src as string,
+        url: (req.query.src as string) || '',
         available: false
       }
     };
     
-    res.status(500).json(response_data);
+    return res.status(500).json(response_data);
   }
 });
 
